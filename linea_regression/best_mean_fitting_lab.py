@@ -54,5 +54,20 @@ for i in range(500):
 b2 = test(a)
 plt.plot(a, b2, color='red')
 
-plt.show()
+
+# best fitting line
+def best_fitting(X, Y):
+    mb = ((np.mean(X) * np.mean(Y)) - (np.mean(X * Y))) / ((np.mean(X) ** 2) - (np.mean(X ** 2)))
+    cb = ((np.mean(Y)) - (mb * np.mean(X)))
+    return mb, cb
+
+
+mbnew, cbnew = best_fitting(X, Y)
+yh = []
+
+for i in X:
+    yh.append(i * mbnew + cbnew)
+
+plt.plot(X, yh, color='green')
+
 plt.show()
